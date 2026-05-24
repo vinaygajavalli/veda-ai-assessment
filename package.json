@@ -1,0 +1,26 @@
+{
+  "name": "veda-ai-assessment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI Assessment Creator — teachers generate structured question papers with AI",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,worker,web -c blue,magenta,green \"npm:dev:api\" \"npm:dev:worker\" \"npm:dev:web\"",
+    "dev:api": "npm run dev -w @veda/api",
+    "dev:worker": "npm run dev -w @veda/worker",
+    "dev:web": "npm run dev -w @veda/web",
+    "build": "npm run build -w @veda/shared && npm run build -w @veda/api && npm run build -w @veda/worker && npm run build -w @veda/web",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

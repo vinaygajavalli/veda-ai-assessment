@@ -1,0 +1,29 @@
+{
+  "name": "@veda/worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --format=cjs --outfile=dist/index.cjs --external:puppeteer --external:mongodb-client-encryption --external:@mongodb-js/zstd --external:kerberos --external:snappy --external:aws4 --external:bson-ext",
+    "start": "node dist/index.cjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@google/genai": "^2.6.0",
+    "@veda/shared": "*",
+    "bullmq": "^5.34.0",
+    "dotenv": "^16.4.7",
+    "ioredis": "^5.4.2",
+    "mongoose": "^8.9.5",
+    "puppeteer": "^24.1.0",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "esbuild": "^0.28.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

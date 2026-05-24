@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: theme("colors.bg");
+  color: theme("colors.ink");
+  font-family: theme("fontFamily.sans");
+}
+
+/* Ruled input lines for the student-info block on the paper */
+.exam-line {
+  border: 0;
+  border-bottom: 1px solid theme("colors.line");
+  background: transparent;
+  outline: none;
+  padding: 2px 4px;
+}
+.exam-line:focus {
+  border-bottom-color: theme("colors.accent");
+}
+
+/* Thin custom scrollbar inside the dashboard scroll area */
+.scroll-area::-webkit-scrollbar { width: 8px; }
+.scroll-area::-webkit-scrollbar-thumb { background: #d8d8e0; border-radius: 8px; }
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  .print-sheet {
+    box-shadow: none !important;
+    border: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+}
