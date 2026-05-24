@@ -151,6 +151,10 @@ WebSocket: client emits `assignment:subscribe` with an id; server emits `assignm
 
 ---
 
+## Output Images / Scrennshots
+![Uploading WhatsApp Image 2026-05-25 at 2.53.01 AM.jpeg…]()
+
+
 ## Bonus features implemented
 
 - **PDF export** via Puppeteer — a real typeset A4 paper, not a browser print of the DOM.
