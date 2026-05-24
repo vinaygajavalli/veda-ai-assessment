@@ -1,3 +1,4 @@
+import { createServer } from "node:http";
 import { Worker } from "bullmq";
 import { env, GENERATION_QUEUE, PDF_QUEUE } from "./env.js";
 import { redis } from "./lib/redis.js";
@@ -5,7 +6,16 @@ import { connectMongo } from "./lib/mongo.js";
 import { processGeneration } from "./processors/generation.js";
 import { processPdf } from "./processors/pdf.js";
 
+function startHealthServer() {
+  const port = Number(process.env.PORT) || 4100;
+  createServer((_req, res) => {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ ok: true, role: "worker", model: env.GEMINI_MODEL }));
+  }).listen(port, () => console.log(`[worker] health server on :${port}`));
+}
+
 async function main() {
+  startHealthServer();
   await connectMongo();
 
   const generationWorker = new Worker(GENERATION_QUEUE, processGeneration, {
